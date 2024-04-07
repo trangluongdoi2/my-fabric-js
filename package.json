@@ -5,7 +5,7 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc-watch --onSuccess 'yarn build-frontend'",
-    "build-frontend": "tsc --outDir ./my-vue-app/node_modules/my-fabric-js/dist"
+    "build-frontend": "tsc --outDir ../my-vue-app/node_modules/my-fabric-js/dist"
   },
   "types": "dist/index.d.ts",
   "license": "MIT",
