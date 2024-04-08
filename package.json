@@ -14,7 +14,6 @@
     "lodash": "^4.17.21"
   },
   "devDependencies": {
-    "@types/fabric": "^5.3.7",
     "@types/lodash": "^4.14.202",
     "@types/node": "^16.18.86",
     "tsc-watch": "^5.0.3",
