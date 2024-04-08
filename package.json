@@ -10,7 +10,7 @@
   "types": "dist/index.d.ts",
   "license": "MIT",
   "dependencies": {
-    "fabric": "git@github.com:trangluongdoi2/origin-fabric-js.git#dev",
+    "fabric": "git@github.com:trangluongdoi2/fabricjs-v6.git#dev",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
