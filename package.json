@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:trangluongdoi2/my-fabric-js.git"
+    "url": "git+ssh://git@github.com:trangluongdoi2/my-fabric-js.git"
   },
   "bugs": {
     "url": "https://gitlab.com/corjl/fabric-js/issues"
@@ -18,7 +18,7 @@
   "homepage": "https://gitlab.com/corjl/fabric-js#readme",
   "license": "ISC",
   "dependencies": {
-    "fabric": "git@github.com:trangluongdoi2/fabricjs-v6.git#dev",
+    "fabric": "github:trangluongdoi2/fabricjs-v6.git",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
