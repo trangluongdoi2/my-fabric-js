@@ -18,7 +18,7 @@
   "homepage": "https://gitlab.com/corjl/fabric-js#readme",
   "license": "ISC",
   "dependencies": {
-    "fabric": "github-personal:trangluongdoi2/fabricjs-v6.git",
+    "fabric": "github:trangluongdoi2/fabricjs-v6.git",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
