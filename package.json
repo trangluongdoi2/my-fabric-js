@@ -2,13 +2,21 @@
   "name": "my-fabric-js",
   "version": "1.0.0",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "watch": "tsc-watch --onSuccess 'yarn build-frontend'",
     "build-frontend": "tsc --outDir ../my-vue-app/node_modules/my-fabric-js/dist"
   },
-  "types": "dist/index.d.ts",
-  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:trangluongdoi2/my-fabric-js.git"
+  },
+  "bugs": {
+    "url": "https://gitlab.com/corjl/fabric-js/issues"
+  },
+  "homepage": "https://gitlab.com/corjl/fabric-js#readme",
+  "license": "ISC",
   "dependencies": {
     "fabric": "git@github.com:trangluongdoi2/fabricjs-v6.git#dev",
     "lodash": "^4.17.21"
@@ -16,6 +24,10 @@
   "devDependencies": {
     "@types/lodash": "^4.14.202",
     "@types/node": "^16.18.86",
+    "@typescript-eslint/eslint-plugin": "^4.33.0",
+    "@typescript-eslint/parser": "^4.33.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-no-loops": "^0.3.0",
     "tsc-watch": "^5.0.3",
     "typescript": "^5.4.4"
   }
