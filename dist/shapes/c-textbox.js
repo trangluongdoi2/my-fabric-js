@@ -7,15 +7,15 @@ export const textBoxDefaultValues = {
     _wordJoiners: /[ \t\r]/,
     splitByGrapheme: false,
 };
-export class CorjlTextbox extends fabric.Textbox {
+export class MyTextbox extends fabric.Textbox {
     static getDefaults() {
-        return Object.assign(Object.assign({}, super.getDefaults()), CorjlTextbox.ownDefaults);
+        return Object.assign(Object.assign({}, super.getDefaults()), MyTextbox.ownDefaults);
     }
     constructor(text, options) {
         super(text, options);
         console.log(text, 'text...');
     }
 }
-CorjlTextbox.stateProperties = fabric.Textbox.stateProperties.concat('originalText', 'uppercase', 'curved', 'outerGlow', 'protection', 'freeze', 'wrapText', 'autoWrapText');
-CorjlTextbox.cacheProperties = fabric.Textbox.cacheProperties.concat('originalText', 'uppercase', 'curved', 'outerGlow', 'protection', 'freeze', 'wrapText', 'autoWrapText');
-CorjlTextbox.ownDefaults = textBoxDefaultValues;
+MyTextbox.stateProperties = fabric.Textbox.stateProperties.concat('originalText', 'uppercase', 'curved', 'outerGlow', 'protection', 'freeze', 'wrapText', 'autoWrapText');
+MyTextbox.cacheProperties = fabric.Textbox.cacheProperties.concat('originalText', 'uppercase', 'curved', 'outerGlow', 'protection', 'freeze', 'wrapText', 'autoWrapText');
+MyTextbox.ownDefaults = textBoxDefaultValues;
