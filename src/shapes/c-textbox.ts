@@ -1,7 +1,7 @@
 import * as fabric from 'fabric';
 import { TClassProperties } from '../type';
 
-export const textBoxDefaultValues: Partial<TClassProperties<CorjlTextbox>> = {
+export const textBoxDefaultValues: Partial<TClassProperties<MyTextbox>> = {
   minWidth: 20,
   dynamicMinWidth: 2,
   lockScalingFlip: true,
@@ -9,7 +9,7 @@ export const textBoxDefaultValues: Partial<TClassProperties<CorjlTextbox>> = {
   _wordJoiners: /[ \t\r]/,
   splitByGrapheme: false,
 }
-export class CorjlTextbox extends fabric.Textbox {
+export class MyTextbox extends fabric.Textbox {
   static stateProperties: string[] = fabric.Textbox.stateProperties.concat(
     'originalText',
     'uppercase',
@@ -34,7 +34,7 @@ export class CorjlTextbox extends fabric.Textbox {
   static ownDefaults: Record<string, any> = textBoxDefaultValues;
 
   static getDefaults(): { [x: string]: any; } {
-    return { ...super.getDefaults(), ...CorjlTextbox.ownDefaults };
+    return { ...super.getDefaults(), ...MyTextbox.ownDefaults };
   }
 
   constructor(text: string, options?: any) {
