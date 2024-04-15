@@ -13,22 +13,10 @@ export class MyTextbox extends fabric.Textbox {
   static stateProperties: string[] = fabric.Textbox.stateProperties.concat(
     'originalText',
     'uppercase',
-    'curved',
-    'outerGlow',
-    'protection',
-    'freeze',
-    'wrapText',
-    'autoWrapText',
   );
   static cacheProperties = fabric.Textbox.cacheProperties.concat(
     'originalText',
     'uppercase',
-    'curved',
-    'outerGlow',
-    'protection',
-    'freeze',
-    'wrapText',
-    'autoWrapText',
   );
 
   static ownDefaults: Record<string, any> = textBoxDefaultValues;
@@ -37,8 +25,25 @@ export class MyTextbox extends fabric.Textbox {
     return { ...super.getDefaults(), ...MyTextbox.ownDefaults };
   }
 
+  declare originalText?: string;
+
+  declare placeholder?: string;
+
   constructor(text: string, options?: any) {
     super(text, options);
-    console.log(text, 'text...');
+  }
+
+  // @ts-ignore
+  get text() {
+    let text = this.originalText || this.placeholder || '';
+    // if (this.isEdittingEmptyText()) {
+    //   text = '';
+    // }
+    return text;
+  }
+
+  set text(value: string) {
+    const text = value || '';
+    this.originalText = text;
   }
 }
