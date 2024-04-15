@@ -13,9 +13,20 @@ export class MyTextbox extends fabric.Textbox {
     }
     constructor(text, options) {
         super(text, options);
-        console.log(text, 'text...');
+    }
+    // @ts-ignore
+    get text() {
+        let text = this.originalText || this.placeholder || '';
+        // if (this.isEdittingEmptyText()) {
+        //   text = '';
+        // }
+        return text;
+    }
+    set text(value) {
+        const text = value || '';
+        this.originalText = text;
     }
 }
-MyTextbox.stateProperties = fabric.Textbox.stateProperties.concat('originalText', 'uppercase', 'curved', 'outerGlow', 'protection', 'freeze', 'wrapText', 'autoWrapText');
-MyTextbox.cacheProperties = fabric.Textbox.cacheProperties.concat('originalText', 'uppercase', 'curved', 'outerGlow', 'protection', 'freeze', 'wrapText', 'autoWrapText');
+MyTextbox.stateProperties = fabric.Textbox.stateProperties.concat('originalText', 'uppercase');
+MyTextbox.cacheProperties = fabric.Textbox.cacheProperties.concat('originalText', 'uppercase');
 MyTextbox.ownDefaults = textBoxDefaultValues;

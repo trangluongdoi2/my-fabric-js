@@ -8,5 +8,9 @@ export declare class MyTextbox extends fabric.Textbox {
     static getDefaults(): {
         [x: string]: any;
     };
+    originalText?: string;
+    placeholder?: string;
     constructor(text: string, options?: any);
+    get text(): string;
+    set text(value: string);
 }
