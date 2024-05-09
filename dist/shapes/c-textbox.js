@@ -84,6 +84,7 @@ export class MyTextbox extends fabric.Textbox {
         // @ts-ignore
         return super.toObject([
             'originalText',
+            // 'elementKey',
         ].concat(propertiesToInclude || []));
     }
 }
