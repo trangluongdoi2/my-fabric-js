@@ -1,5 +1,5 @@
 import * as fabric from 'fabric';
-import { extend } from 'lodash';
+import { cloneDeep, extend } from 'lodash';
 
 export const getDocumentFromElement = (el: HTMLElement) =>
   el.ownerDocument || null;
@@ -63,6 +63,7 @@ const iTextKeyBehavior: any = {
     this.hiddenTextarea.value = newValue;
     this.hiddenTextarea.selectionStart = this.selectionStart + data?.length;
     this.hiddenTextarea.selectionEnd = this.selectionStart + data?.length;
+    this.paste();
   },
 
   // @ts-ignore
@@ -77,8 +78,6 @@ const iTextKeyBehavior: any = {
       this.updateFromTextArea();
       this.fire('changed');
       if (this.canvas) {
-        // @ts-ignore
-        // this.canvas.fire('text:changed', { target: this as unknown as IText });
         this.canvas.fire('text:changed', { target: this as unknown as any });
         this.canvas.requestRenderAll();
       }
@@ -88,8 +87,6 @@ const iTextKeyBehavior: any = {
       updateAndFire();
       return;
     }
-    // decisions about style changes.
-    console.log();
     const nextText = this._splitTextIntoLines(this.hiddenTextarea.value).graphemeText;
     const charCount = this._text.length;
     const nextCharCount = nextText.length;
@@ -137,7 +134,13 @@ const iTextKeyBehavior: any = {
           false
         );
         // now duplicate the style one for each inserted text.
-        copiedStyle = insertedText.map(() => copiedStyle![0]);
+        copiedStyle = insertedText.map(
+          () =>
+            // this return an array of references, but that is fine since we are
+            // copying the style later.
+            // @ts-ignore
+            copiedStyle[0]
+        );
       }
       if (selection) {
         removeFrom = selectionStart;
@@ -160,7 +163,7 @@ const iTextKeyBehavior: any = {
         !fabric.config.disableStyleCopyPaste
       ) {
         copiedStyle = copyPasteData.copiedTextStyle;
-
+        copiedStyle = cloneDeep(copyPasteData.copiedTextStyle);
       }
       this.insertNewStyleBlock(insertedText, selectionStart, copiedStyle);
     }
@@ -172,7 +175,6 @@ const iTextKeyBehavior: any = {
       return;
     }
     const { copyPasteData } = fabric.getEnv();
-    console.log(copyPasteData.copiedText, 'copyPasteData.copiedText...');
     copyPasteData.copiedText = this.getSelectedText();
     if (navigator?.clipboard) {
       navigator.clipboard.writeText(this.getSelectedText());
@@ -186,6 +188,7 @@ const iTextKeyBehavior: any = {
     } else {
       copyPasteData.copiedTextStyle = undefined;
     }
+    console.log(copyPasteData.copiedTextStyle, 'copyPasteData.copiedTextStyle..');
     this._copyDone = true;
   },
 
