@@ -3,13 +3,9 @@ class MySection extends fabric.Rect {
     constructor(options) {
         super(options);
         this.DOUBLE_TAP_THRESHOLD = 200;
-        console.log(options, 'constructor MySection...');
     }
     static getDefaults() {
-        return Object.assign(Object.assign({}, super.getDefaults()), { originX: 'left', originY: 'top', 
-            // fill: 'rgb(66, 184, 131)',
-            // fill: 'rgb(0,0,0)',
-            fill: 'rgb(255, 255, 255)', visible: true, selectable: false, hoverCursor: 'default', borderColorDefault: '#c3c3c3', borderColorActive: 'blue', strokeWidth: 0 });
+        return Object.assign(Object.assign({}, super.getDefaults()), { originX: 'left', originY: 'top', fill: 'rgb(255, 255, 255)', visible: true, selectable: false, hoverCursor: 'default', borderColorDefault: '#c3c3c3', borderColorActive: 'blue', strokeWidth: 0 });
     }
     fillDefault(ctx) {
         var _a, _b;
@@ -37,12 +33,23 @@ class MySection extends fabric.Rect {
         const offsetY = -height / 2;
         ctx.drawImage(fillDefaultPattern, 0, 0, fillDefaultPattern.width, fillDefaultPattern.height, offsetX, offsetY, width, height);
     }
+    renderBorderShadow(ctx) {
+        var _a;
+        ctx.save();
+        ctx.translate(-this.width / 2, -this.height / 2);
+        ctx.beginPath();
+        ctx.rect(this.left, this.top, this.width, this.height);
+        ctx.shadowColor = '#000000';
+        ctx.shadowBlur = 10 * (((_a = this.canvas) === null || _a === void 0 ? void 0 : _a.getZoom()) || 1);
+        ctx.fillStyle = '#ffffff';
+        ctx.fill();
+        ctx.closePath();
+        ctx.restore();
+    }
     _renderFill(ctx) {
-        console.log('_renderFill....');
         ctx.save();
         this.fillDefault(ctx);
-        // var centerPoint = this.getCenterPoint();
-        // this.setPositionByOrigin(centerPoint, 'center', 'center');
+        this.renderBorderShadow(ctx);
         ctx.restore();
     }
     static fromObject(object, options) {

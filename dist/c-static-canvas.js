@@ -3,11 +3,9 @@ import { extend } from 'lodash';
 export class CorjlStaticCanvas extends fabric.StaticCanvas {
     renderAll() {
         try {
-            console.log('render All staticCavas...');
             const canvasToDrawOn = this.contextContainer;
             // @ts-ignore
             this.renderCanvas(canvasToDrawOn, this._chooseObjectsToRender());
-            console.log('_chooseObjectsToRender....');
             return this;
         }
         catch (error) {
@@ -16,7 +14,6 @@ export class CorjlStaticCanvas extends fabric.StaticCanvas {
         }
     }
     _searchPossibleTargets(objects, pointer) {
-        console.log('_searchPossibleTargets..');
         return fabric.Canvas.prototype._searchPossibleTargets.call(this, objects, pointer);
     }
 }

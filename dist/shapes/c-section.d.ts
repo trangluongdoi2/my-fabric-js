@@ -21,6 +21,7 @@ declare class MySection extends fabric.Rect {
         strokeWidth: number;
     };
     fillDefault(ctx: CanvasRenderingContext2D): void;
+    renderBorderShadow(ctx: CanvasRenderingContext2D): void;
     _renderFill(ctx: CanvasRenderingContext2D): void;
     static fromObject(object: any, options?: any): Promise<import("fabric/dist/src/shapes/Object/Object").FabricObject<Partial<import("fabric/dist/src/shapes/Object/types/ObjectProps").ObjectProps>, fabric.SerializedObjectProps, fabric.ObjectEvents>>;
 }
