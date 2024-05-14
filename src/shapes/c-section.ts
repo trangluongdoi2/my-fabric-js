@@ -18,7 +18,6 @@ class MySection extends fabric.Rect {
 
   constructor(options: Record<string, unknown>) {
     super(options);
-    console.log(options, 'constructor MySection...');
   }
 
   static getDefaults() {
@@ -26,8 +25,6 @@ class MySection extends fabric.Rect {
       ...super.getDefaults(),
       originX: 'left',
       originY:'top',
-      // fill: 'rgb(66, 184, 131)',
-      // fill: 'rgb(0,0,0)',
       fill: 'rgb(255, 255, 255)',
       visible: true,
       selectable: false,
@@ -67,12 +64,23 @@ class MySection extends fabric.Rect {
     offsetX, offsetY, width, height);
   }
 
+  renderBorderShadow(ctx: CanvasRenderingContext2D) {
+    ctx.save();
+    ctx.translate(-this.width / 2, -this.height / 2);
+    ctx.beginPath();
+    ctx.rect(this.left, this.top, this.width, this.height);
+    ctx.shadowColor = '#000000';
+    ctx.shadowBlur = 10 * (this.canvas?.getZoom() || 1);
+    ctx.fillStyle = '#ffffff';
+    ctx.fill();
+    ctx.closePath();
+    ctx.restore();
+  }
+
   _renderFill(ctx: CanvasRenderingContext2D) {
-    console.log('_renderFill....');
     ctx.save();
     this.fillDefault(ctx);
-    // var centerPoint = this.getCenterPoint();
-    // this.setPositionByOrigin(centerPoint, 'center', 'center');
+    this.renderBorderShadow(ctx);
     ctx.restore();
   }
 

@@ -11,7 +11,6 @@ const SelectableCanvasOverrides: any = {
       objectsToRender = [...this._objects];
     }
     objectsToRender.unshift(this._section);
-    console.log(objectsToRender, 'objectsToRender...');
     return objectsToRender;
   },
 
